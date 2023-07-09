@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fullstack.backendjwt.exception.ResourceNotFoundException;
 import com.fullstack.backendjwt.model.AuthenticationReq;
 import com.fullstack.backendjwt.model.Product;
 import com.fullstack.backendjwt.repository.ProductRepository;
@@ -55,14 +56,14 @@ public class ProductController {
 	
 	
 	@PostMapping("/authenticate")
-    public String generateToken(@RequestBody AuthenticationReq request) throws Exception {
+    public String generateToken(@RequestBody AuthenticationReq request) {
         try {
         	System.out.println("Request aaaa gai haaaa");
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(request.getUserName(), request.getPassword())
             );
         } catch (Exception ex) {
-            throw new Exception("inavalid username/password");
+            throw new ResourceNotFoundException("invalid username/password");
         }
         return jwtUtil.generateToken(request.getUserName());
     }

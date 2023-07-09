@@ -20,7 +20,7 @@ import javax.crypto.SecretKey;
 @Service
 public class JwtUtil {
 
-	 private String secret = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970";
+	 private String secret = "53382f416f2f54507a75304752326c7a6f59344265413d3d0d0a";
 
 	 	//done
 	    public String extractUsername(String token) {
